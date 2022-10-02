@@ -25,6 +25,8 @@ baseurl: "/RDLog" # the subpath of your site, e.g. /blog
 github_username:  HUGHNew
 
 # Build settings
+page_excerpts: true
+show_excerpts: true
 theme: minima
 plugins:
   - jekyll-feed

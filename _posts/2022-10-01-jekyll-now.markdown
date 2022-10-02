@@ -1,7 +1,8 @@
 ---
-layout: post
+layout: base
 title:  "notice post"
 categories: notice
+tags: misc
 ---
 new feeds by [Jekyll][jekyll-gh]
 
@@ -9,6 +10,8 @@ recording:
 - Research materials
 - Develop materials
 - Reading materials
+
+<!--more-->
 
 the old one here: [HUGHNew/feeds][old-feed]
 
