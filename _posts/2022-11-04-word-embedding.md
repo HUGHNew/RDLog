@@ -19,7 +19,7 @@ text representation
 - word embedding(Distributed representation)
   - word2vec
     - Skip-Gram
-    - CBOW
+    - CBoW
   - GloVe
 
 
@@ -30,10 +30,13 @@ embedding 在数学上表示[单射函数][embedding-zhihu]
 
 word embedding 指就是 `(word) -> vector<float>` 的方法
 
+> 使用 `torch.nn.Embedding`(实际存储一个`[vocab_size, word_dim]`的矩阵) 可以随机初始化词向量 `word_list -> [list_size, word_dim]` 其中每个词(在词列表用数字表示的)会被初始化为一个 `word_dim` 维的向量  
+> 在训练的反向传播中 词向量会作为副产品产出  
+
 ## word2vec
 
 这种技术有两种具体方法
 - Skip-Gram: 中心词预测周围词
-- Coutinuous Bag of Word: 周围词预测中心词
+- Continuous Bag of Word: 周围词预测中心词
 
 [embedding-zhihu]: https://www.zhihu.com/question/32275069/answer/80188672
