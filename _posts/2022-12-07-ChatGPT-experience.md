@@ -4,7 +4,7 @@ title:  "OpenAI ChatGPT 小玩"
 categories: exploration
 tags: GPT ML
 ---
-ChatGPT 使用体验
+ChatGPT 使用体验(失误了 这其实是用的GPT3)
 <!--more-->
 
 让ChatGPT对话模型去模拟一个终端现在仍然是可以的 有一定的可玩性。
