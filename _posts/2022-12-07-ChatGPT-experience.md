@@ -4,8 +4,30 @@ title:  "OpenAI ChatGPT 小玩"
 categories: exploration
 tags: GPT ML
 ---
-ChatGPT 使用体验(失误了 这其实是用的GPT3)
+ChatGPT 使用体验(前面部分是ChatGPT 后面部分是GPT3 text-davinci-003 模型)
 <!--more-->
+
+## ChatGPT
+
+昨天发现使用错模型了 然后ChatGPT要排队 今天补充一些ChatGPT的样例
+
+### 数学推理
+
+对于一个可能没出现的鸡兔同笼问题 它会正确的给出逻辑 然后算错
+
+![math-infer-Chat]({{site.baseurl}}/assets/images/ChatGPT-real-math-infer.png)
+
+能解决到括号的算数计算 但是进位有点问题
+
+![math-cal]({{site.baseurl}}/assets/images/ChatGPT-real-cal.png)
+
+### 化学方程式
+
+不知道是不是受到 self-attention 和 short penalty 的问题 ChatGPT会倾向于生成大段的检索结果
+
+![]({{site.baseurl}}/assets/images/ChatGPT-chem.png)
+
+## GPT3 text-davinci-003
 
 让ChatGPT对话模型去模拟一个终端现在仍然是可以的 有一定的可玩性。
 
@@ -13,7 +35,7 @@ ChatGPT 使用体验(失误了 这其实是用的GPT3)
 - 复述生成
 - few-shot 消极转积极的生成
 
-## 复述生成
+### 复述生成
 
 这里多种语句 包括一般的白话句、多重否定句和文言
 
@@ -21,19 +43,32 @@ ChatGPT 使用体验(失误了 这其实是用的GPT3)
 
 ![retell]({{site.baseurl}}/assets/images/ChatGPT-retell.png)
 
-## 多轮对话
+### 多轮对话
 
 在隐含指代情况下的多轮对话 效果不好(这里的两轮对话效果不错)
 
 ![multi-phase-dialogue]({{site.baseurl}}/assets/images/ChatGPT-multi-diag.png)
 
-## 消极句子转换为积极句子
+### 数学问题推理
+
+这里尝试了几个简单的数学问题 发现它并不擅长推理
+
+在 1+1 和 经典九章算法 的回答上是正确的
+
+但是要是自己出题 可能就搜索不到答案了
+
+- `(1+3)*4+(33-8)*2` = 66
+- 鸡兔同笼问题答案为 鸡:100 兔:200
+
+![math-prob]({{site.baseurl}}/assets/images/ChatGPT-math-infer.png)
+
+### 消极句子转换为积极句子
 
 在 few-shot 的情况下 测试了消极语句转换为积极语句的效果 整体还行
 
 ![positive-generate]({{site.baseurl}}/assets/images/ChatGPT-pos-gen.png)
 
-## 反向终端模拟
+### 反向终端模拟
 
 一个简单代码改错的例子: 用模型模拟用户 我模拟终端 来逐步修改编译的报错
 
@@ -52,7 +87,7 @@ int main() {
 ![]({{site.baseurl}}/assets/images/ChatGPT-mock-shell2.png)
 ![]({{site.baseurl}}/assets/images/ChatGPT-mock-shell3.png)
 
-## 推理
+### 推理
 
 一个简单任务: 将 Cpp 代码转换为 Python 代码(多轮对话)
 
@@ -64,7 +99,7 @@ int main() {
 
 ![infer-ability]({{site.baseurl}}/assets/images/ChatGPT-CND-joke.png)
 
-## 未联网
+### 离线数据
 
 从一个点证实模型是独立的: 每次清空内容后问时间都是不一样的
 
