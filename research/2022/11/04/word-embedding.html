@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Word Embedding vs. word2vec | R&amp;D feeds</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Word Embedding vs. word2vec" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Word Embedding 是一种文本表示的技术 表现的是一种 将单词转化为实数向量 的思想" />
+<meta property="og:description" content="Word Embedding 是一种文本表示的技术 表现的是一种 将单词转化为实数向量 的思想" />
+<meta property="og:site_name" content="R&amp;D feeds" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-04T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Word Embedding vs. word2vec" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-11-04T00:00:00+00:00","datePublished":"2022-11-04T00:00:00+00:00","description":"Word Embedding 是一种文本表示的技术 表现的是一种 将单词转化为实数向量 的思想","headline":"Word Embedding vs. word2vec","mainEntityOfPage":{"@type":"WebPage","@id":"/RDLog/research/2022/11/04/word-embedding.html"},"url":"/RDLog/research/2022/11/04/word-embedding.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/RDLog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/RDLog/feed.xml" title="R&amp;D feeds" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/RDLog/">R&amp;D feeds</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Word Embedding vs. word2vec</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-11-04T00:00:00+00:00" itemprop="datePublished">Nov 4, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Word Embedding 是一种文本表示的技术 表现的是一种 <strong>将单词转化为实数向量</strong> 的思想</p>
+
+<p>word2vec 是这种技术的具体实现</p>
+
+<!--more-->
+
+<h2 id="embedding">Embedding</h2>
+
+<p>text representation</p>
+<ul>
+  <li>one-hot</li>
+  <li>integer encode</li>
+  <li>word embedding(Distributed representation)
+    <ul>
+      <li>word2vec
+        <ul>
+          <li>Skip-Gram</li>
+          <li>CBoW</li>
+        </ul>
+      </li>
+      <li>GloVe</li>
+    </ul>
+  </li>
+</ul>
+
+<p>one-hot 与 整数编码 的区别在于一个是向量表示 一个是下标表示</p>
+
+<p>embedding 在数学上表示<a href="https://www.zhihu.com/question/32275069/answer/80188672">单射函数</a></p>
+
+<p>word embedding 指就是 <code class="language-plaintext highlighter-rouge">(word) -&gt; vector&lt;float&gt;</code> 的方法</p>
+
+<blockquote>
+  <p>使用 <code class="language-plaintext highlighter-rouge">torch.nn.Embedding</code>(实际存储一个<code class="language-plaintext highlighter-rouge">[vocab_size, word_dim]</code>的矩阵) 可以随机初始化词向量 <code class="language-plaintext highlighter-rouge">word_list -&gt; [list_size, word_dim]</code> 其中每个词(在词列表用数字表示的)会被初始化为一个 <code class="language-plaintext highlighter-rouge">word_dim</code> 维的向量<br />
+在训练的反向传播中 词向量会作为副产品产出</p>
+</blockquote>
+
+<h2 id="word2vec">word2vec</h2>
+
+<p>这种技术有两种具体方法</p>
+<ul>
+  <li>Skip-Gram: 中心词预测周围词</li>
+  <li>Continuous Bag of Word: 周围词预测中心词</li>
+</ul>
+
+
+  </div><a class="u-url" href="/RDLog/research/2022/11/04/word-embedding.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/RDLog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">R&amp;D feeds</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">R&amp;D feeds</li><li><a class="u-email" href="mailto:hugh.lpd@gmail.com">hugh.lpd@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/HUGHNew"><svg class="svg-icon"><use xlink:href="/RDLog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">HUGHNew</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>R&amp;D [b]logs</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

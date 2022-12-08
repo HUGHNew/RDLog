@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>SSH usage &amp; login security | R&amp;D feeds</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="SSH usage &amp; login security" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="ssh的使用与登录方式的安全性问题探索" />
+<meta property="og:description" content="ssh的使用与登录方式的安全性问题探索" />
+<meta property="og:site_name" content="R&amp;D feeds" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-03T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="SSH usage &amp; login security" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-03T00:00:00+00:00","datePublished":"2022-10-03T00:00:00+00:00","description":"ssh的使用与登录方式的安全性问题探索","headline":"SSH usage &amp; login security","mainEntityOfPage":{"@type":"WebPage","@id":"/RDLog/exploration/2022/10/03/ssh-access-method.html"},"url":"/RDLog/exploration/2022/10/03/ssh-access-method.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/RDLog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/RDLog/feed.xml" title="R&amp;D feeds" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/RDLog/">R&amp;D feeds</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">SSH usage &amp; login security</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-10-03T00:00:00+00:00" itemprop="datePublished">Oct 3, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>ssh的使用与登录方式的安全性问题探索</p>
+
+<p>直接跳<a href="#tldr">结论</a>
+<!--more--></p>
+
+<h2 id="fingerprint">fingerprint</h2>
+
+<p>ssh 连接的第一步需要手动确认服务器的指纹</p>
+
+<p>那么需要知道如何查询服务器的指纹: 在服务器端 <code class="language-plaintext highlighter-rouge">ssh-keygen -lf /etc/ssh/ssh_host_ecdsa_key.pub</code> (针对 ECDSA 算法 默认使用SHA256) 可以指定其他签名算法 <code class="language-plaintext highlighter-rouge">[-E md5|sha256|..]</code></p>
+
+<h2 id="ssh-copy-id">ssh-copy-id</h2>
+
+<p>使用非对称加密需要把客户端的公钥拷贝到服务端上 一般会使用<code class="language-plaintext highlighter-rouge">ssh-copy-id</code></p>
+
+<p>这其实是个脚本文件 核心逻辑在于下面这段</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span> <span class="s2">"</span><span class="nv">$DRY_RUN</span><span class="s2">"</span> <span class="o">]</span> <span class="o">||</span> <span class="nb">printf</span> <span class="s1">'%s\n'</span> <span class="s2">"</span><span class="nv">$NEW_IDS</span><span class="s2">"</span> | <span class="se">\</span>
+  ssh <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span> <span class="s2">"exec sh -c 'cd ; umask 077 ; mkdir -p .ssh &amp;&amp; { [ -z "</span><span class="s1">'`tail -1c .ssh/authorized_keys 2&gt;/dev/null`'</span><span class="s2">" ] || echo &gt;&gt; .ssh/authorized_keys ; } &amp;&amp; cat &gt;&gt; .ssh/authorized_keys || exit 1 ; if type restorecon &gt;/dev/null 2&gt;&amp;1 ; then restorecon -F .ssh .ssh/authorized_keys ; fi'"</span> <span class="se">\</span>
+  <span class="o">||</span> <span class="nb">exit </span>1
+</code></pre></div></div>
+
+<p>效果约等于 <code class="language-plaintext highlighter-rouge">cat ~/.ssh/your_pub_key|ssh user@ip "cat &gt;&gt; .ssh/authorized_keys"</code></p>
+
+<p>详解:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">tail -1c</code> 查看最后一个字节</li>
+  <li><code class="language-plaintext highlighter-rouge">{ [ -z ... ] || echo &gt;&gt; .ssh/authorized_keys ; }</code> 保证有个换行 <code class="language-plaintext highlighter-rouge">-z</code> 为判空</li>
+  <li><code class="language-plaintext highlighter-rouge">cat &gt;&gt; .ssh/authorized_keys</code> 此处将之前通过管道传入的公钥放入服务器<code class="language-plaintext highlighter-rouge">authorized_keys</code>中</li>
+  <li><a href="https://man7.org/linux/man-pages/man8/restorecon.8.html"><code class="language-plaintext highlighter-rouge">restorecon</code></a> 恢复(restore)文件上下文(context)</li>
+</ul>
+
+<blockquote>
+  <p>可以看出 这个脚本底层使用 ssh 它的安全性和使用密码登录ssh一致</p>
+</blockquote>
+
+<h2 id="加密过程">加密过程</h2>
+
+<h2 id="算法">算法</h2>
+
+<p>rsa</p>
+
+<p>ed25519</p>
+
+<h2 id="tldr">tl;dr</h2>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">ed25519</code> 算法比 <code class="language-plaintext highlighter-rouge">RSA</code> 更安全</p>
+
+  <p>同时也更建议使用公钥的方式(同时<strong>建议私钥设置密码</strong>)</p>
+</blockquote>
+
+<p>简单介绍一下使用吧</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 生成公钥和私钥 中括号中的参数都是可选的</span>
+ssh-keygen <span class="o">[</span><span class="nt">-t</span> ed25519] <span class="o">[</span><span class="nt">-C</span> <span class="s2">"your comment here"</span><span class="o">]</span> <span class="o">[</span><span class="nt">-f</span> ~/.ssh/your_private_key_file]
+<span class="c"># 默认加密算法为 RSA 建议使用 ed25519</span>
+<span class="c"># 默认私钥文件名: ~/.ssh/id_ed25519 (其实是 id_${加密算法}) 公钥: ~/.ssh/id_ed25519.pub</span>
+
+<span class="c"># 之后是确定密码 建议使用 不过偷懒的话 敲两下回车就好了</span>
+
+ssh-copy-id <span class="o">[</span><span class="nt">-i</span> ~/.ssh/your_private_key_file.pub] _user@_hostname
+
+<span class="c"># 之后就可以用了</span>
+</code></pre></div></div>
+
+<p>为了使用方便的话 一般会<strong>设置别名</strong>(可选)</p>
+
+<p>在文件 <code class="language-plaintext highlighter-rouge">~/.ssh/config</code> 里面添加 下面一段内容</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 设置之后可以通过 `ssh nickname` 的方式快速登录
+Host nickname # 你想使用的别名
+  User your_username # 真实的用户名
+  HostName ip_or_host # 服务器 IP 或者域名
+  IdentityFile ~/.ssh/private_key # 对应的私钥
+  IdentitiesOnly yes
+  Port 22 # 设置端口 默认为 22
+</code></pre></div></div>
+
+
+  </div><a class="u-url" href="/RDLog/exploration/2022/10/03/ssh-access-method.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/RDLog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">R&amp;D feeds</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">R&amp;D feeds</li><li><a class="u-email" href="mailto:hugh.lpd@gmail.com">hugh.lpd@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/HUGHNew"><svg class="svg-icon"><use xlink:href="/RDLog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">HUGHNew</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>R&amp;D [b]logs</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="/RDLog/feed.xml" rel="self" type="application/atom+xml" /><link href="/RDLog/" rel="alternate" type="text/html" /><updated>2022-12-08T05:24:09+00:00</updated><id>/RDLog/feed.xml</id><title type="html">R&amp;amp;D feeds</title><subtitle>R&amp;D [b]logs</subtitle><entry><title type="html">OpenAI ChatGPT 小玩</title><link href="/RDLog/exploration/2022/12/07/ChatGPT-experience.html" rel="alternate" type="text/html" title="OpenAI ChatGPT 小玩" /><published>2022-12-07T00:00:00+00:00</published><updated>2022-12-07T00:00:00+00:00</updated><id>/RDLog/exploration/2022/12/07/ChatGPT-experience</id><content type="html" xml:base="/RDLog/exploration/2022/12/07/ChatGPT-experience.html"><![CDATA[<p>ChatGPT 使用体验(前面部分是ChatGPT 后面部分是GPT3 text-davinci-003 模型)
+<!--more--></p>
+
+<h2 id="chatgpt">ChatGPT</h2>
+
+<p>昨天发现使用错模型了 然后ChatGPT要排队 今天补充一些ChatGPT的样例</p>
+
+<h3 id="数学推理">数学推理</h3>
+
+<p>对于一个可能没出现的鸡兔同笼问题 它会正确的给出逻辑 然后算错</p>
+
+<p><img src="/RDLog/assets/images/ChatGPT-real-math-infer.png" alt="math-infer-Chat" /></p>
+
+<p>能解决到括号的算数计算 但是进位有点问题</p>
+
+<p><img src="/RDLog/assets/images/ChatGPT-real-cal.png" alt="math-cal" /></p>
+
+<h3 id="化学方程式">化学方程式</h3>
+
+<p>不知道是不是受到 self-attention 和 short penalty 的问题 ChatGPT会倾向于生成大段的检索结果</p>
+
+<p><img src="/RDLog/assets/images/ChatGPT-chem.png" alt="" /></p>
+
+<h2 id="gpt3-text-davinci-003">GPT3 text-davinci-003</h2>
+
+<p>让ChatGPT对话模型去模拟一个终端现在仍然是可以的 有一定的可玩性。</p>
+
+<p>这里先看两个比较正经的示例</p>
+<ul>
+  <li>复述生成</li>
+  <li>few-shot 消极转积极的生成</li>
+</ul>
+
+<h3 id="复述生成">复述生成</h3>
+
+<p>这里多种语句 包括一般的白话句、多重否定句和文言</p>
+
+<p>除了“怀民亦未寝”这种节选半句 其他的效果都还可以 (红框标记为效果不太行)</p>
+
+<p><img src="/RDLog/assets/images/ChatGPT-retell.png" alt="retell" /></p>
+
+<h3 id="多轮对话">多轮对话</h3>
+
+<p>在隐含指代情况下的多轮对话 效果不好(这里的两轮对话效果不错)</p>
+
+<p><img src="/RDLog/assets/images/ChatGPT-multi-diag.png" alt="multi-phase-dialogue" /></p>
+
+<h3 id="数学问题推理">数学问题推理</h3>
+
+<p>这里尝试了几个简单的数学问题 发现它并不擅长推理</p>
+
+<p>在 1+1 和 经典九章算法 的回答上是正确的</p>
+
+<p>但是要是自己出题 可能就搜索不到答案了</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">(1+3)*4+(33-8)*2</code> = 66</li>
+  <li>鸡兔同笼问题答案为 鸡:100 兔:200</li>
+</ul>
+
+<p><img src="/RDLog/assets/images/ChatGPT-math-infer.png" alt="math-prob" /></p>
+
+<h3 id="消极句子转换为积极句子">消极句子转换为积极句子</h3>
+
+<p>在 few-shot 的情况下 测试了消极语句转换为积极语句的效果 整体还行</p>
+
+<p><img src="/RDLog/assets/images/ChatGPT-pos-gen.png" alt="positive-generate" /></p>
+
+<h3 id="反向终端模拟">反向终端模拟</h3>
+
+<p>一个简单代码改错的例子: 用模型模拟用户 我模拟终端 来逐步修改编译的报错</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 最初的代码</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"hello"</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>图中绿色内容为模型的输出 可以看到模型的理解能力很强 但同时也还是不能完全理解 没开停用词的话 会生成很多内容</p>
+
+<p><img src="/RDLog/assets/images/ChatGPT-mock-shell0.png" alt="" />
+<img src="/RDLog/assets/images/ChatGPT-mock-shell1.png" alt="" />
+<img src="/RDLog/assets/images/ChatGPT-mock-shell2.png" alt="" />
+<img src="/RDLog/assets/images/ChatGPT-mock-shell3.png" alt="" /></p>
+
+<h3 id="推理">推理</h3>
+
+<p>一个简单任务: 将 Cpp 代码转换为 Python 代码(多轮对话)</p>
+
+<blockquote>
+  <p>图中红色矩形部分为<strong>模型生成内容</strong></p>
+</blockquote>
+
+<p>能看出模型见过一些常用的Linux包管理器 但有印象的也只是 apt/yum 了</p>
+
+<p>同时能看出 在多轮对话的情况下 也会忘掉刚才的错误(这里表现出推理能力可能不太够 包管理下不了包应该认为没有更新index)</p>
+
+<p><img src="/RDLog/assets/images/ChatGPT-CND-joke.png" alt="infer-ability" /></p>
+
+<h3 id="离线数据">离线数据</h3>
+
+<p>从一个点证实模型是独立的: 每次清空内容后问时间都是不一样的</p>
+
+<p><img src="/RDLog/assets/images/ChatGPT-date.png" alt="date" /></p>]]></content><author><name></name></author><category term="exploration" /><category term="GPT" /><category term="ML" /><summary type="html"><![CDATA[ChatGPT 使用体验(前面部分是ChatGPT 后面部分是GPT3 text-davinci-003 模型)]]></summary></entry><entry><title type="html">Linux Redirection</title><link href="/RDLog/develop/2022/11/23/bash-redirect.html" rel="alternate" type="text/html" title="Linux Redirection" /><published>2022-11-23T00:00:00+00:00</published><updated>2022-11-23T00:00:00+00:00</updated><id>/RDLog/develop/2022/11/23/bash-redirect</id><content type="html" xml:base="/RDLog/develop/2022/11/23/bash-redirect.html"><![CDATA[<p>这里主要讲解重定向以及<code class="language-plaintext highlighter-rouge">-</code>和<code class="language-plaintext highlighter-rouge">--</code>在命令行中作为独自字段的使用
+<!--more--></p>
+
+<p>重定向和管道是 <code class="language-plaintext highlighter-rouge">*nix</code> 很使用的特性 其中管道比较简单 主要是匿名管道和具名管道两种 <del>从感觉上讲 也是重定向的一种应用</del></p>
+
+<h2 id="pipe">pipe</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#### unnamed pipe ####</span>
+<span class="nb">cat</span> /etc/passwd|grep root <span class="c"># 找到 root 的密码信息</span>
+
+<span class="c">####  named pipe  ####</span>
+<span class="nb">mkfifo </span>test.pipe <span class="c"># 创建一个 管道 文件</span>
+<span class="c"># no.1 terminal</span>
+<span class="nb">echo </span>hello <span class="o">&gt;</span> test.pipe
+<span class="c"># no.2 terminal</span>
+<span class="nb">cat </span>test.pipe
+</code></pre></div></div>
+
+<h2 id="redirection">redirection</h2>
+
+<p>重定向三种简单的用法</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 重定向标准输出</span>
+cal <span class="o">&gt;</span> this_month <span class="c"># 将本月的日历输入到 this_month 文件(会覆盖原有内容)</span>
+cal <span class="o">&gt;&gt;</span> months <span class="c"># 将本月的日历添加到 months 文件末尾</span>
+
+<span class="c"># 重定向标准输入</span>
+<span class="nb">cat</span> &lt; this_month <span class="c"># 将 this_month 文件内容当输入给 cat 处理</span>
+</code></pre></div></div>
+
+<h3 id="stdinouterr">std[in/out/err]</h3>
+
+<p>四个特殊的文件</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">/dev/null</code>   抛弃掉所有内容</li>
+  <li><code class="language-plaintext highlighter-rouge">/dev/stdin</code>  标准输入(fd:0)</li>
+  <li><code class="language-plaintext highlighter-rouge">/dev/stdout</code> 标准输出(fd:1)</li>
+  <li><code class="language-plaintext highlighter-rouge">/dev/stderr</code> 标准错误(fd:2)</li>
+</ul>
+
+<p>管道(<code class="language-plaintext highlighter-rouge">|</code>)的作用就是把 (<code class="language-plaintext highlighter-rouge">/dev/stdout</code>和<code class="language-plaintext highlighter-rouge">/dev/stderr</code>)变为<code class="language-plaintext highlighter-rouge">/dev/stdin</code></p>
+
+<blockquote>
+  <p>这里的<strong>标准</strong>是相对的</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo </span>hello <span class="o">&gt;</span> /dev/stdout <span class="c"># 这里的标准输出是 输出到屏幕</span>
+hello
+
+<span class="nv">$ </span><span class="nb">echo </span>hello|cp /dev/stdin /dev/stdout|tr <span class="s1">'[a-z]'</span> <span class="s1">'[A-Z]'</span> <span class="c"># 对于 cp 而言 标准输出是stdout stream</span>
+HELLO
+</code></pre></div></div>
+
+<p>上述的内容可以同时使用 下面是一些例子</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> &lt; hello.txt <span class="o">&gt;</span> /dev/stdout <span class="c"># 将 hello.txt 的内容重定向到 标准输出</span>
+<span class="c"># cat &lt; hello.txt 1&gt; /dev/stdout # 等于该命令</span>
+<span class="nv">$ </span>./prog 1&gt;log 2&gt;error.log <span class="c"># 执行prog程序 并将正常输出重定向到 log 错误信息重定向到 error.log</span>
+</code></pre></div></div>
+
+<h3 id="misc">misc</h3>
+
+<h4 id="stream-merge">stream merge</h4>
+
+<p>输出流合并</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python main.py <span class="o">&gt;</span> rt.log 2&gt;&amp;1 <span class="c"># 2&gt;&amp;1 表示将 stderr 合并到 stdout 中</span>
+<span class="c"># 1&gt;&amp;2 则表示将 stdout 合并到 stderr</span>
+<span class="c"># 后面流合并的部分跟前面重定向的部分无关</span>
+<span class="c"># python main.py 2&gt; rt.log 1&gt;&amp;2 # 效果一致</span>
+<span class="c"># python main.py &amp;&gt; rt.log # 一种简化形式</span>
+</code></pre></div></div>
+
+<p>输入流合并</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>0&lt;&amp;3 <span class="c"># 合并入 stdin</span>
+</code></pre></div></div>
+
+<h3 id="self-defined-streamfd">self-defined stream/fd</h3>
+
+<p>可以使用 <code class="language-plaintext highlighter-rouge">exec</code> 创建新的描述符 可以使用[3,8] 6个描述符</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">exec </span>3 <span class="o">&gt;</span> rt.log <span class="c"># 定义 fd:3 为rt.log的输出流</span>
+<span class="nb">echo </span>hello <span class="o">&gt;</span>&amp;3 <span class="c"># 写入文件 rt.log</span>
+<span class="c"># exec 3 &gt;&gt; rt.log # 可在描述符关闭后使用</span>
+
+<span class="c"># 定义输入符</span>
+<span class="nb">exec </span>3 &lt; rt.log
+<span class="nb">exec </span>0&lt;&amp;3 <span class="c"># 定义合并流</span>
+<span class="nb">read </span>line <span class="c"># 读取变量</span>
+
+<span class="c"># 关闭描述符</span>
+<span class="nb">exec </span>3&gt;&amp;-
+</code></pre></div></div>
+
+<h4 id="here-docstr">here doc|str</h4>
+
+<p>此外特殊的输入流有两种</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># (here doc) 使用自定义的结束符 直接输入一段文字当输入流</span>
+<span class="nv">$ </span><span class="nb">cat</span> <span class="o">&lt;&lt;</span> <span class="no">_self_defined_eof</span><span class="sh">
+...
+content
+...
+</span><span class="no">_self_defined_eof
+
+</span>... <span class="c"># output</span>
+
+<span class="c"># (here string) 直接输入一段文字当输入流</span>
+<span class="nv">$ </span><span class="nb">cat</span> <span class="o">&lt;&lt;&lt;</span> <span class="s2">"input stream"</span>
+input stream
+</code></pre></div></div>
+
+<h2 id="dash">dash</h2>
+
+<p>在shell脚本中会看见两种短横线</p>
+
+<ul>
+  <li>单横线<code class="language-plaintext highlighter-rouge">-</code>  表示标准输入</li>
+  <li>双横线<code class="language-plaintext highlighter-rouge">--</code> 表示参数结束(unix的习俗)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> - <span class="c"># 换行后按 ^D (输入EOF) 结束</span>
+<span class="c"># cat &lt; /dev/stdin</span>
+<span class="c"># 上面两个命令效果相同</span>
+
+<span class="nv">$ </span>git checkout  <span class="nt">--</span> 
+<span class="c"># Replace a file in the current directory with the version of it committed in a given branch:</span>
+</code></pre></div></div>
+
+<h2 id="参考">参考</h2>
+
+<p>linux关闭文件描述符及lsof命令: https://blog.51cto.com/u_4048786/3201751
+Shell 输入/输出重定向: https://www.runoob.com/linux/linux-shell-io-redirections.html
+Shell自定义输入输出文件描述符: https://www.jianshu.com/p/15239a00f56b</p>]]></content><author><name></name></author><category term="develop" /><category term="shell" /><category term="linux" /><summary type="html"><![CDATA[这里主要讲解重定向以及-和--在命令行中作为独自字段的使用]]></summary></entry><entry><title type="html">app root path for flask</title><link href="/RDLog/develop/2022/11/12/flask-app-root.html" rel="alternate" type="text/html" title="app root path for flask" /><published>2022-11-12T00:00:00+00:00</published><updated>2022-11-12T00:00:00+00:00</updated><id>/RDLog/develop/2022/11/12/flask-app-root</id><content type="html" xml:base="/RDLog/develop/2022/11/12/flask-app-root.html"><![CDATA[<p>本文介绍简单的 <code class="language-plaintext highlighter-rouge">Flask</code> 应用通过 <code class="language-plaintext highlighter-rouge">Blueprint</code> 给整个应用设置应用根目录的方法</p>
+
+<p>主要是通过 <code class="language-plaintext highlighter-rouge">Blueprint</code> 的 <code class="language-plaintext highlighter-rouge">url_prefix</code> 和 Flask app 的 <code class="language-plaintext highlighter-rouge">static_url_path</code> 来完成设置的</p>
+
+<!--more-->
+<h2 id="static-prefix">static prefix</h2>
+
+<p>在默认的情况下 Flask 应用的使用的<strong>本地静态路径</strong>为应用目录下的<code class="language-plaintext highlighter-rouge">static</code> <strong>远程路径</strong>(通过HTTP访问)为<code class="language-plaintext highlighter-rouge">/static</code></p>
+
+<p>Flask 应用可以通过两个变量 <code class="language-plaintext highlighter-rouge">static_folder</code>(static) 和 <code class="language-plaintext highlighter-rouge">static_url_path</code>(/static) 来分别设置本地和远端的路径 前面括号内为变量的默认值</p>
+
+<p>例如</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">""" 目录结构
+.
+├── app.py
+├── 2.jpg
+"""</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">,</span> <span class="n">static_url_path</span><span class="o">=</span><span class="s">"/base/static"</span><span class="p">,</span> <span class="n">static_folder</span><span class="o">=</span><span class="s">"./"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>访问 <code class="language-plaintext highlighter-rouge">127.0.0.1:5000/base/static/2.jpg</code> 就能获得 <code class="language-plaintext highlighter-rouge">./2.jpg</code> 这张图片</p>
+
+<h2 id="api-prefix">API prefix</h2>
+
+<p>静态资源的问题解决了 剩下的就是 API 调用的问题了</p>
+
+<p><code class="language-plaintext highlighter-rouge">app.config["APPLICATION_ROOT"] = prefix</code> 似乎没有用 所以不想给全部API手动写的话 就需要使用 <code class="language-plaintext highlighter-rouge">Blueprint</code> 了</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Blueprint</span><span class="p">,</span> <span class="n">Flask</span>
+
+<span class="n">bp</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s">"bp_name"</span><span class="p">,</span> <span class="n">__name__</span><span class="p">,</span> <span class="n">url_prefix</span><span class="o">=</span><span class="s">"/base"</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">bp</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">,</span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span><span class="s">'POST'</span><span class="p">])</span> <span class="c1"># 注意这里不是 app.route
+</span><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+  <span class="k">return</span> <span class="s">"hello"</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Blueprint</code> 的简单使用如上 可以直接写在 app.py 中</p>
+
+<p>之后访问 <code class="language-plaintext highlighter-rouge">127.0.0.1/base</code> 就能获得 hello 了</p>
+
+<h3 id="render_template-中使用">render_template 中使用</h3>
+
+<p>不过在 render_template 中使用的时候需要注意</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>About<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+<p>例如之前使用的<code class="language-plaintext highlighter-rouge">Blueprint</code>名为 <code class="language-plaintext highlighter-rouge">bp_name</code> 如果使用的template的话 需要在 <code class="language-plaintext highlighter-rouge">url_for</code> 里面添加 blueprint 名(如果嵌套的话就顺序使用 如<code class="language-plaintext highlighter-rouge">parent.child.index</code>)</p>
+
+<h2 id="示例">示例</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── app.py
+├── blue.py
+├── static
+│   └── 2.jpg
+└── templates
+    ├── base.html
+    └── index.html
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">blue.py</code> 是蓝图的具体代码 可以单独放在一个文件里面</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">blue</span> <span class="kn">import</span> <span class="n">bp</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">,</span> <span class="n">static_url_path</span><span class="o">=</span><span class="s">"/base/static"</span><span class="p">,</span> <span class="n">static_folder</span><span class="o">=</span><span class="s">"/static"</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="s">"127.0.0.1"</span><span class="p">,</span> <span class="mi">8080</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># blue.py
+</span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Blueprint</span><span class="p">,</span> <span class="n">render_template</span>
+
+<span class="n">bp</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s">"bp"</span><span class="p">,</span> <span class="n">__name__</span><span class="p">,</span> <span class="n">url_prefix</span><span class="o">=</span><span class="s">"/base"</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">bp</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">,</span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">"index.html"</span><span class="p">)</span>
+<span class="o">@</span><span class="n">bp</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/base'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_base</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">"base path"</span>
+</code></pre></div></div>
+<p>下面只截取了相关的代码</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--templates/base.html--&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"navbar-brand"</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>About<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--templates/index.html---&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">""</span> <span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>访问 127.0.0.1/base 可以访问到index.html 并且正常获取图片</p>
+</blockquote>
+
+<blockquote>
+  <p>访问 127.0.0.1/base/base 可以得到 “base path”</p>
+</blockquote>]]></content><author><name></name></author><category term="develop" /><category term="flask" /><category term="python" /><category term="nginx" /><summary type="html"><![CDATA[本文介绍简单的 Flask 应用通过 Blueprint 给整个应用设置应用根目录的方法]]></summary></entry><entry><title type="html">Word Embedding vs. word2vec</title><link href="/RDLog/research/2022/11/04/word-embedding.html" rel="alternate" type="text/html" title="Word Embedding vs. word2vec" /><published>2022-11-04T00:00:00+00:00</published><updated>2022-11-04T00:00:00+00:00</updated><id>/RDLog/research/2022/11/04/word-embedding</id><content type="html" xml:base="/RDLog/research/2022/11/04/word-embedding.html"><![CDATA[<p>Word Embedding 是一种文本表示的技术 表现的是一种 <strong>将单词转化为实数向量</strong> 的思想</p>
+
+<p>word2vec 是这种技术的具体实现</p>
+
+<!--more-->
+
+<h2 id="embedding">Embedding</h2>
+
+<p>text representation</p>
+<ul>
+  <li>one-hot</li>
+  <li>integer encode</li>
+  <li>word embedding(Distributed representation)
+    <ul>
+      <li>word2vec
+        <ul>
+          <li>Skip-Gram</li>
+          <li>CBoW</li>
+        </ul>
+      </li>
+      <li>GloVe</li>
+    </ul>
+  </li>
+</ul>
+
+<p>one-hot 与 整数编码 的区别在于一个是向量表示 一个是下标表示</p>
+
+<p>embedding 在数学上表示<a href="https://www.zhihu.com/question/32275069/answer/80188672">单射函数</a></p>
+
+<p>word embedding 指就是 <code class="language-plaintext highlighter-rouge">(word) -&gt; vector&lt;float&gt;</code> 的方法</p>
+
+<blockquote>
+  <p>使用 <code class="language-plaintext highlighter-rouge">torch.nn.Embedding</code>(实际存储一个<code class="language-plaintext highlighter-rouge">[vocab_size, word_dim]</code>的矩阵) 可以随机初始化词向量 <code class="language-plaintext highlighter-rouge">word_list -&gt; [list_size, word_dim]</code> 其中每个词(在词列表用数字表示的)会被初始化为一个 <code class="language-plaintext highlighter-rouge">word_dim</code> 维的向量<br />
+在训练的反向传播中 词向量会作为副产品产出</p>
+</blockquote>
+
+<h2 id="word2vec">word2vec</h2>
+
+<p>这种技术有两种具体方法</p>
+<ul>
+  <li>Skip-Gram: 中心词预测周围词</li>
+  <li>Continuous Bag of Word: 周围词预测中心词</li>
+</ul>]]></content><author><name></name></author><category term="research" /><category term="nlp" /><category term="representation" /><summary type="html"><![CDATA[Word Embedding 是一种文本表示的技术 表现的是一种 将单词转化为实数向量 的思想]]></summary></entry><entry><title type="html">CS224n 学习与辅助材料</title><link href="/RDLog/course/2022/10/06/CS224n-kickoff.html" rel="alternate" type="text/html" title="CS224n 学习与辅助材料" /><published>2022-10-06T00:00:00+00:00</published><updated>2022-10-06T00:00:00+00:00</updated><id>/RDLog/course/2022/10/06/CS224n-kickoff</id><content type="html" xml:base="/RDLog/course/2022/10/06/CS224n-kickoff.html"><![CDATA[<p>CS224n 学习的一些材料</p>
+<ol>
+  <li>课程选择: 2021 winter
+    <ul>
+      <li>使用PyTorch 而非TensorFlow</li>
+      <li><a href="https://www.bilibili.com/video/BV1Nf4y1K7kU/">B站视频</a> 字幕比较好</li>
+      <li><a href="https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1214/">官方网站</a> (可获取 slides 或者原始视频)</li>
+    </ul>
+  </li>
+  <li><a href="https://daiwk.github.io/assets/matrix+vector+derivatives+for+machine+learning.pdf">机器学习中的矩阵/向量求导</a></li>
+</ol>]]></content><author><name></name></author><category term="course" /><category term="NLP" /><category term="materials" /><category term="WIP" /><summary type="html"><![CDATA[CS224n 学习的一些材料 课程选择: 2021 winter 使用PyTorch 而非TensorFlow B站视频 字幕比较好 官方网站 (可获取 slides 或者原始视频) 机器学习中的矩阵/向量求导]]></summary></entry><entry><title type="html">SSH usage &amp;amp; login security</title><link href="/RDLog/exploration/2022/10/03/ssh-access-method.html" rel="alternate" type="text/html" title="SSH usage &amp;amp; login security" /><published>2022-10-03T00:00:00+00:00</published><updated>2022-10-03T00:00:00+00:00</updated><id>/RDLog/exploration/2022/10/03/ssh-access-method</id><content type="html" xml:base="/RDLog/exploration/2022/10/03/ssh-access-method.html"><![CDATA[<p>ssh的使用与登录方式的安全性问题探索</p>
+
+<p>直接跳<a href="#tldr">结论</a>
+<!--more--></p>
+
+<h2 id="fingerprint">fingerprint</h2>
+
+<p>ssh 连接的第一步需要手动确认服务器的指纹</p>
+
+<p>那么需要知道如何查询服务器的指纹: 在服务器端 <code class="language-plaintext highlighter-rouge">ssh-keygen -lf /etc/ssh/ssh_host_ecdsa_key.pub</code> (针对 ECDSA 算法 默认使用SHA256) 可以指定其他签名算法 <code class="language-plaintext highlighter-rouge">[-E md5|sha256|..]</code></p>
+
+<h2 id="ssh-copy-id">ssh-copy-id</h2>
+
+<p>使用非对称加密需要把客户端的公钥拷贝到服务端上 一般会使用<code class="language-plaintext highlighter-rouge">ssh-copy-id</code></p>
+
+<p>这其实是个脚本文件 核心逻辑在于下面这段</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span> <span class="s2">"</span><span class="nv">$DRY_RUN</span><span class="s2">"</span> <span class="o">]</span> <span class="o">||</span> <span class="nb">printf</span> <span class="s1">'%s\n'</span> <span class="s2">"</span><span class="nv">$NEW_IDS</span><span class="s2">"</span> | <span class="se">\</span>
+  ssh <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span> <span class="s2">"exec sh -c 'cd ; umask 077 ; mkdir -p .ssh &amp;&amp; { [ -z "</span><span class="s1">'`tail -1c .ssh/authorized_keys 2&gt;/dev/null`'</span><span class="s2">" ] || echo &gt;&gt; .ssh/authorized_keys ; } &amp;&amp; cat &gt;&gt; .ssh/authorized_keys || exit 1 ; if type restorecon &gt;/dev/null 2&gt;&amp;1 ; then restorecon -F .ssh .ssh/authorized_keys ; fi'"</span> <span class="se">\</span>
+  <span class="o">||</span> <span class="nb">exit </span>1
+</code></pre></div></div>
+
+<p>效果约等于 <code class="language-plaintext highlighter-rouge">cat ~/.ssh/your_pub_key|ssh user@ip "cat &gt;&gt; .ssh/authorized_keys"</code></p>
+
+<p>详解:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">tail -1c</code> 查看最后一个字节</li>
+  <li><code class="language-plaintext highlighter-rouge">{ [ -z ... ] || echo &gt;&gt; .ssh/authorized_keys ; }</code> 保证有个换行 <code class="language-plaintext highlighter-rouge">-z</code> 为判空</li>
+  <li><code class="language-plaintext highlighter-rouge">cat &gt;&gt; .ssh/authorized_keys</code> 此处将之前通过管道传入的公钥放入服务器<code class="language-plaintext highlighter-rouge">authorized_keys</code>中</li>
+  <li><a href="https://man7.org/linux/man-pages/man8/restorecon.8.html"><code class="language-plaintext highlighter-rouge">restorecon</code></a> 恢复(restore)文件上下文(context)</li>
+</ul>
+
+<blockquote>
+  <p>可以看出 这个脚本底层使用 ssh 它的安全性和使用密码登录ssh一致</p>
+</blockquote>
+
+<h2 id="加密过程">加密过程</h2>
+
+<h2 id="算法">算法</h2>
+
+<p>rsa</p>
+
+<p>ed25519</p>
+
+<h2 id="tldr">tl;dr</h2>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">ed25519</code> 算法比 <code class="language-plaintext highlighter-rouge">RSA</code> 更安全</p>
+
+  <p>同时也更建议使用公钥的方式(同时<strong>建议私钥设置密码</strong>)</p>
+</blockquote>
+
+<p>简单介绍一下使用吧</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 生成公钥和私钥 中括号中的参数都是可选的</span>
+ssh-keygen <span class="o">[</span><span class="nt">-t</span> ed25519] <span class="o">[</span><span class="nt">-C</span> <span class="s2">"your comment here"</span><span class="o">]</span> <span class="o">[</span><span class="nt">-f</span> ~/.ssh/your_private_key_file]
+<span class="c"># 默认加密算法为 RSA 建议使用 ed25519</span>
+<span class="c"># 默认私钥文件名: ~/.ssh/id_ed25519 (其实是 id_${加密算法}) 公钥: ~/.ssh/id_ed25519.pub</span>
+
+<span class="c"># 之后是确定密码 建议使用 不过偷懒的话 敲两下回车就好了</span>
+
+ssh-copy-id <span class="o">[</span><span class="nt">-i</span> ~/.ssh/your_private_key_file.pub] _user@_hostname
+
+<span class="c"># 之后就可以用了</span>
+</code></pre></div></div>
+
+<p>为了使用方便的话 一般会<strong>设置别名</strong>(可选)</p>
+
+<p>在文件 <code class="language-plaintext highlighter-rouge">~/.ssh/config</code> 里面添加 下面一段内容</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 设置之后可以通过 `ssh nickname` 的方式快速登录
+Host nickname # 你想使用的别名
+  User your_username # 真实的用户名
+  HostName ip_or_host # 服务器 IP 或者域名
+  IdentityFile ~/.ssh/private_key # 对应的私钥
+  IdentitiesOnly yes
+  Port 22 # 设置端口 默认为 22
+</code></pre></div></div>]]></content><author><name></name></author><category term="exploration" /><category term="tech" /><category term="security" /><category term="linux" /><summary type="html"><![CDATA[ssh的使用与登录方式的安全性问题探索]]></summary></entry><entry><title type="html">NLP kickoff: OI dataset</title><link href="/RDLog/schedule/2022/10/02/NLP-july.22.html" rel="alternate" type="text/html" title="NLP kickoff: OI dataset" /><published>2022-10-02T00:00:00+00:00</published><updated>2022-10-02T00:00:00+00:00</updated><id>/RDLog/schedule/2022/10/02/NLP-july.22</id><content type="html" xml:base="/RDLog/schedule/2022/10/02/NLP-july.22.html"><![CDATA[<p>基于<a href="https://github.com/Liuxg16/jumper-codes/tree/main/data/OI-dataset">工伤数据集</a>，训练一个文本分类器，完成倒数第三个任务（工商等级Level）的分类，并对预测器的性能进行衡量。
+<!--more--></p>
+<ul>
+  <li>文本分类任务</li>
+  <li>CNN实现</li>
+  <li>Torch框架</li>
+</ul>
+
+<p>schedule:</p>
+<ul>
+  <li>10.3 - 10.5 / 3d: <a href="https://web.stanford.edu/class/cs224n/">cs224n</a> &amp; 《自然语言处理入门》
+    <ul>
+      <li>prerequisites:(anyone is enough)
+        <ul>
+          <li><a href="https://www.bilibili.com/video/BV1YA411w7ym/">cs124</a>: From Languages to Information</li>
+          <li><a href="https://www.bilibili.com/video/BV1rs411371e/">cs229</a>: Machine Learning by Andrew Ng</li>
+          <li>cs230: Deep Learning</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>10.3 : mnist &amp; PyTorch</li>
+</ul>
+
+<p>other materials</p>
+<ul>
+  <li><a href="http://ciml.info/">A Course in Machine Learning</a></li>
+  <li><a href="https://zhuanlan.zhihu.com/p/566863806">NLP基础</a></li>
+</ul>]]></content><author><name></name></author><category term="schedule" /><category term="plan" /><category term="target" /><summary type="html"><![CDATA[基于工伤数据集，训练一个文本分类器，完成倒数第三个任务（工商等级Level）的分类，并对预测器的性能进行衡量。 文本分类任务 CNN实现 Torch框架]]></summary></entry><entry><title type="html">notice post</title><link href="/RDLog/notice/2022/10/01/jekyll-now.html" rel="alternate" type="text/html" title="notice post" /><published>2022-10-01T00:00:00+00:00</published><updated>2022-10-01T00:00:00+00:00</updated><id>/RDLog/notice/2022/10/01/jekyll-now</id><content type="html" xml:base="/RDLog/notice/2022/10/01/jekyll-now.html"><![CDATA[<p>new feeds by <a href="https://github.com/jekyll/jekyll">Jekyll</a></p>
+
+<p>recording:</p>
+<ul>
+  <li>Research materials</li>
+  <li>Develop materials</li>
+  <li>Reading materials</li>
+</ul>
+
+<!--more-->
+
+<p>the old one here: <a href="https://github.com/HUGHNew/feeds">HUGHNew/feeds</a></p>
+
+<blockquote>
+  <p>WHY A NEW FEED:</p>
+  <ul>
+    <li>the old one is to heavy to migrate to jekyll</li>
+    <li>vuepress doesn’t support <strong><em>blog</em></strong> officially now</li>
+    <li>some theme solutions like <a href="https://github.com/xugaoyi/vuepress-theme-vdoing">vdoing</a> and <a href="https://vuepress-theme-hope.github.io/v2/zh/">hope</a> are hard to use for me (more JS and relative problems or long-time refactor needed)</li>
+  </ul>
+</blockquote>]]></content><author><name></name></author><category term="notice" /><category term="misc" /><summary type="html"><![CDATA[new feeds by Jekyll]]></summary></entry></feed>
