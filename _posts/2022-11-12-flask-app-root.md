@@ -100,14 +100,16 @@ def test_base():
     return "base path"
 ```
 下面只截取了相关的代码
-```html
+
+{% highlight html %}
 <!--templates/base.html-->
-<a class="navbar-brand" href="{{ url_for('bp.index')}}">About</a>
-```
-```html
+<a class="navbar-brand" href="{{ url_for('bp.index') }}">About</a>
+{% endhighlight %}
+
+{% highlight html %}
 <!--templates/index.html--->
 <img src="{{url_for('static', filename='2.jpg')}}" >
-```
+{% endhighlight %}
 
 > 访问 127.0.0.1/base 可以访问到index.html 并且正常获取图片
 
