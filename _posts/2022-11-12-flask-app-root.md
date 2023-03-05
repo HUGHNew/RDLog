@@ -103,12 +103,14 @@ def test_base():
 
 {% highlight html %}
 <!--templates/base.html-->
-<a class="navbar-brand" href="{{ url_for('bp.index') }}">About</a>
+<a class="navbar-brand" href="{ { url_for('bp.index') } }">About</a>
+<!-- Jekyll Liquid 语法问题 忽略双大括号之间的间隔  -->
 {% endhighlight %}
 
 {% highlight html %}
 <!--templates/index.html--->
-<img src="{{url_for('static', filename='2.jpg')}}" >
+<img src="{ {url_for('static', filename='2.jpg')} }" >
+<!-- Jekyll Liquid 语法问题 忽略双大括号之间的间隔  -->
 {% endhighlight %}
 
 > 访问 127.0.0.1/base 可以访问到index.html 并且正常获取图片
