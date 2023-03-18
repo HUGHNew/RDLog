@@ -16,17 +16,17 @@ tags: business GPT
 
 2023年3月16日 百度发布类ChatGPT模型文心一言
 
-2023年3月17日 既Google宣布将类ChatGPT模型集成进workspace后 Microsoft将GPT4集成进Microsoft 365 (Office 365)
+2023年3月17日 既Google宣布将类ChatGPT模型集成进workspace后 Microsoft将GPT4集成进[Microsoft 365][MS365]
 
 ## Emergent Abilities of Large Language Models
 
 > 标题名为: 大语言模型的涌现能力
 
-当 OpenAI 在 ChatGPT 上证明大语言模型的**涌现**能力之后 商业公司和普通体验者都震惊了
+当OpenAI在ChatGPT上证明大语言模型的**涌现**能力之后 商业公司和普通体验者都震惊了
 
-最典型的反应就是微软直接裁掉了**元宇宙**部分 并且加大投资 OpenAI
+最典型的反应就是微软直接裁掉了**元宇宙**部分 并且加大投资OpenAI
 
-在 ChatGPT 大获成功之后 其他公司和机构也开始推出自己的大模型 (最典型的失败案例是Google演示Bard不顺利 导致股价暴跌)
+在ChatGPT大获成功之后 其他公司和机构也开始推出自己的大模型 (最典型的失败案例是Google演示Bard不顺利 导致股价暴跌)
 
 > ChatGPT的早期试用可以参考[前文][ChatGPT-exp]
 
@@ -34,23 +34,25 @@ tags: business GPT
 
 ## GPT4: the end of NLP and CV
 
-3月上旬 微软德国发声说下周 OpenAI 将发布GPT4
+3月上旬 微软德国发声说下周OpenAI将发布GPT4
 
 同时期确定的消息是百度将于3月16日发布百度类ChatGPT模型: 文心一言
 
-结果 OpenAI 在北京时间3月15日1时在 Twitter 公布GPT4 同时公布了一份关于GPT4性能的技术报告
+结果OpenAI在北京时间3月15日1时在Twitter公布GPT4 同时公布了一份关于GPT4性能的技术报告
 
-如果说 ChatGPT 只是揭示了大模型能够**涌现**新能力这个实现 那么GPT4就是大模型新时代的冲锋号了 让人无法回避大模型所带来的对于全球的冲击
+支持图文多模态的GPT4 在多个任务表现优异 让人直呼NLP和CV已经不存在了
 
-> 另外 值得一提的是 微软解散了它的关于GPT的风险评估团队 开始了基于 OpenAI 大模型的狂野扩张
+如果说ChatGPT只是揭示了大模型能够**涌现**新能力这个实现 那么GPT4就是大模型新时代的冲锋号了 让人无法回避大模型所带来的对于全球的冲击
+
+> 另外值得一提的是 微软解散了它的关于OpenAI语言大模型的风险评估团队 开始了基于OpenAI大模型的狂野扩张
 
 ## Baidu 文心可言
 
 百度在北京时间3月16日14:00全平台直播了文心一言的新闻发布会 但是只是用slides进行讲解 没有实机演示 同时CEO与CTO演讲皆不佳 导致了当日百度集团股价最高10%的港股下跌
 
-事前我对百度模型的期望是能够媲美 ChatGPT 早期版本的水平 就能够在目前中国这片没有 OpenAI 的类GPT模型蓝海市场站住阵脚
+事前我对百度模型的期望是能够媲美ChatGPT早期版本的水平 就能够在目前中国这片没有 OpenAI 的类GPT模型蓝海市场站住阵脚
 
-但是由于百度发布会的简陋的 slides 演讲人员的表现和没有任何实际演示 让我觉得也许它的能力不太行
+但是由于百度发布会的简陋的slides演讲人员的表现和没有任何实际演示 让我觉得也许它的能力不太行
 
 但是3月17日 经过他人的[测评结果](https://www.zhihu.com/question/589955024/answer/2940079055)发现其实文心一言在中文上的表现与ChatGPT各有千秋
 
@@ -79,9 +81,8 @@ CEO没说清楚商业 CTO没讲明白技术 整体效果不如知乎的体验回
 
 商业发布会?
 
-CEO介绍系统与合作伙伴
-
-CTO介绍平台和层次架构
+1. CEO介绍系统与合作伙伴
+2. CTO介绍平台和层次架构
 
 意图用稳健的预先准备避免可能的现场出错 但是当天港股下跌最高10%
 
@@ -105,7 +106,7 @@ CTO介绍平台和层次架构
 
 > 数据存储和数据安全问题对于B端用户很重要
 
-在此之前 复旦大学的团队公布自己的类 ChatGPT 大模型 [MOSS](https://www.zhihu.com/question/585248111)
+在此之前 复旦大学的团队公布自己的类ChatGPT大模型 [MOSS](https://www.zhihu.com/question/585248111)
 
 那么应该有其他的高校有一定的资源进行自己的大模型训练
 
@@ -113,6 +114,7 @@ CTO介绍平台和层次架构
 
 ## 结语
 
-如果 GPT4 还没出生 那么我认为造一个类ChatGPT没那么紧急 但是现在LLaMA成为了公开的密码 GPT4也已经是端上桌的一盘好菜 那么抢占蓝海 以战养战 势在必行
+如果GPT4还没出生 那么我认为造一个类ChatGPT没那么紧急 但是现在LLaMA成为了公开的秘密 GPT4也已经是端上桌的一盘好菜 那么抢占蓝海 以战养战 势在必行
 
 [ChatGPT-exp]: https://hughnew.github.io/RDLog/exploration/2022/12/07/ChatGPT-experience.html
+[MS365]: https://blogs.microsoft.com/blog/2023/03/16/introducing-microsoft-365-copilot-your-copilot-for-work/
