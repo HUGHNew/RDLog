@@ -1,0 +1,9 @@
+# Configure main menu and social menu
+
+[[social]]
+identifier = "github"
+name = "HUGHNew"
+url = "https://github.com/HUGHNew/RDLog"
+
+[social.params]
+icon = "brand-github"

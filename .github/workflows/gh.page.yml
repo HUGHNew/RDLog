@@ -1,23 +1,54 @@
-name: Build and deploy Jekyll site to GitHub Pages
+name: Deploy Hugo to Github Pages
 
 on:
-  push:
-    branches:
-      - main # or master before October 2020
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
 
 jobs:
-  github-pages:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-      - uses: helaili/jekyll-action@2.0.5    # Choose any one of the Jekyll Actions
-        with:                                # Some relative inputs of your action
-          target_branch: gh-pages
-        env:
-          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Cache Hugo resources
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-hugo-resources
+              with:
+                  path: resources
+                  key: ${{ env.cache-name }}
+
+            - uses: actions/setup-go@v2
+              with:
+                  go-version: "^1.17.0"
+            - run: go version
+
+            - name: Cache Go Modules
+              uses: actions/cache@v2
+              with:
+                  path: |
+                      ~/.cache/go-build
+                      ~/go/pkg/mod
+                  key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+                  restore-keys: |
+                      ${{ runner.os }}-go-
+
+            - name: Setup Hugo
+              uses: peaceiris/actions-hugo@v2
+              with:
+                  hugo-version: "latest"
+                  extended: true
+
+            - name: Build
+              run: hugo --minify --gc
+
+            - name: Deploy 🚀
+              uses: JamesIves/github-pages-deploy-action@4.1.4
+              with:
+                  branch: gh-pages
+                  folder: public
+                  clean: true
+                  single-commit: true

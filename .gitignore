@@ -1,3 +1,9 @@
+# Hugo
+public
+resources
+
+# old jekyll
+_posts
 _site
 .sass-cache
 .jekyll-cache
