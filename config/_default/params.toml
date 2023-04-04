@@ -21,11 +21,11 @@ local = true
 src = "/avatar.png"
 
 [article]
-math = false
+math = true
 readingTime = true
 
 [article.license]
-enabled = true
+enabled = false
 default = "Licensed under CC BY-NC-SA 4.0"
 
 ## Widgets
