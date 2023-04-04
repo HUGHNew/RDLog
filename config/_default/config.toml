@@ -1,5 +1,4 @@
-# baseURL = 'http://hugnew.github.io/RDLog/'
-baseURL = 'http://hugnew.github.io/'
+baseURL = 'http://hugnew.github.io/RDLog/'
 languageCode = "zh-CN"
 title = 'Research/Develop/Business blogs'
 
