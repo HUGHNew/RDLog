@@ -93,4 +93,4 @@ def tranverse(dir:str, cut_files:bool=True):
             shutil.move(file, nf)
 
 if __name__ == "__main__":
-    tranverse()
+    tranverse("content/post")
