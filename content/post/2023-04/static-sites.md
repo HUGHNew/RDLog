@@ -1,5 +1,4 @@
 ---
-title: "Static Sites"
 date: 2023-04-04T22:31:19+08:00
 title: "CMS与静态网页生成器的选择"
 categories: ["blog", "misc"]

@@ -31,7 +31,7 @@ description: 简述3月中旬几个重要的GPT发布节点以来的可能影响
 
 > ChatGPT的早期试用可以参考[前文][ChatGPT-exp]
 
-> New Bing 用于论文搜索总结 ![summize-paper](images/NewBing-summize-paper.png)
+> New Bing 用于论文搜索总结 ![summize-paper](images/gpt/NewBing-summize-paper.png)
 
 ## GPT4: the end of NLP and CV
 
@@ -63,7 +63,7 @@ description: 简述3月中旬几个重要的GPT发布节点以来的可能影响
 
 再结合百度的预期布局来看 百度是有想法做垂直领域的
 
-![Baidu-insights](images/Baidu-insight.png)
+![Baidu-insights](images/gpt/Baidu-insight.png)
 
 我们可以认为 在这样的模型实际表现下 百度能快速扩张并实现它的目标
 

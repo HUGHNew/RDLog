@@ -136,7 +136,7 @@ $$
 
 MDP 在状态转移函数上面对一个参数: **动作$a$**
 
-![markov-transfer-diff](images/Markov-transfer-diff.png)
+![markov-transfer-diff](images/markov/Markov-transfer-diff.png)
 
 在MDP中 动作由agent给出
 
