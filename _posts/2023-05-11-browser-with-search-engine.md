@@ -30,9 +30,9 @@ Chrome就属于老牌浏览器了 登录Google账号 密码同步和标签页同
 
 主流搜索引擎不算太多
 
-在NewBing之前 我主要还是用Bing cn|bing|com在大多数时候的搜索结果还可以 同时在不使用任何插件的情况下 没有那么多广告
+在NewBing之前 我主要还是用Bing cn.bing.com在大多数时候的搜索结果还可以 同时在不使用任何插件的情况下 没有那么多广告
 
-不过现在NewBing上线 微软更积极收集用户数据 对于Bing的每条结果都增加了www|bing|com/ck/a 同时隐藏了原网址 此外Bing的重定向还可能很慢 需要手动点击跳转
+不过现在NewBing上线 微软更积极收集用户数据 对于Bing的每条结果都增加了www.bing.com/ck/a 同时隐藏了原网址 此外Bing的重定向还可能很慢 需要手动点击跳转
 
 这个东西现阶段还不能关 那么就不要再使用Bing 除了NewBing
 
@@ -52,14 +52,14 @@ Chrome就属于老牌浏览器了 登录Google账号 密码同步和标签页同
 ### NewBing in Chrome
 
 1. 安装 User-Agent Switcher and Manager
-2. 对于 www|bing|com 添加 Edge的UA
+2. 对于 www.bing.com 添加 Edge的UA
 3. enjoy your own NewBing
 4. (美国的NewBing可以画图)
 
 ### Search engines
 
 1. Chrome 设置 -> 搜索引擎
-2. 添加NewBing: 快捷键使用`b` 网址为`www|bing|com/search/?q=%s&showconv=1`
+2. 添加NewBing: 快捷键使用`b` 网址为`https://www.bing.com/search/?q=%s&showconv=1`
 3. NewBing有概率不直接将搜索内容作为第一条发送的内容
 4. 无所谓 在search和chat之间切换一下 你就能找到之前搜索的内容了
 5. 添加其他搜索引擎的方法一样
