@@ -32,7 +32,7 @@ apt 表示通过包管理进行下载或者只提供deb之类的系统包
 补充一些可选工具
 
 - `pv`(apt): 管道查看器 这下知道管子里的水什么时候流完了
-- [`atuin`](https://github.com/ellie/atuin)(apt): shell历史数据库和反向搜索助手 还支持本地数据统计
+- [`atuin`](https://github.com/ellie/atuin)(apt): shell历史数据库和反向搜索助手 还支持本地数据统计 **在WSL2中Bash中会有0.3s左右的额外用时 体感明显**
 - [`frogmouth`](https://github.com/Textualize/frogmouth)(pip): 终端Markdown浏览器 摆脱颅内编译的好助手
 - [`ctop`](https://github.com/bcicen/ctop)(apt/docker): container top
 - [`sd`](https://github.com/chmln/sd)(apt/bin): 现代人更友好的`sed`
