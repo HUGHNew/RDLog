@@ -1,7 +1,7 @@
 ---
 title: "RAID Tour"
 date: 2023-05-23T16:30:05+08:00
-categories: ["Linux" |  "operation" |  "introduction" |  "setup"]
+categories: ["Linux", "operation", "introduction", "setup"]
 layout: search
 tags: ["develop"]
 ---
