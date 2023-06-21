@@ -102,6 +102,27 @@ ssh-keygen -t ed25519 [-C "your comment here"] [-f ~/.ssh/your_private_key_file]
 - 使用**密钥**不会让密码多次在通信中反复出现 更安全一点
 - 使用**密钥**对于命令行用户更友好(除非sshd没有设置密钥授权)
 
+### Pubkey permission
+
+首先先开启服务器的公钥登录
+
+```bash
+# in /etc/ssh/sshd_config
+PubkeyAuthentication yes
+```
+
+用户目录权限
+```bash
+私钥 600 # 保证私钥其他用户没有权限
+.ssh 700 # 保证 others 没有写权限
+公钥 644 # 同上
+.ssh/authorized_keys 644 # 同上
+```
+
+如果权限设置有问题 ssh 公钥登录将不启用
+
+如果不是使用的默认公钥名 那么在使用 `user@ip` 登录时 需要指定私钥文件 `ssh -p _port_ -i private.file u@ip`
+
 ### tunnel
 
 可以将 ssh 用作加密通信的中介: 端口转发
@@ -138,6 +159,8 @@ $ rsync -e 'ssh -p port' source remote-host:dest
 > 同时也更建议使用公钥的方式(同时**建议私钥设置密码**)
 
 简单介绍一下使用吧
+
+> 先需要服务器允许公钥登录 配置文件:`/etc/ssh/sshd_config`
 
 ```bash
 # 生成公钥和私钥 中括号中的参数都是可选的
