@@ -83,6 +83,43 @@ ssh-keygen -t ed25519 [-C "your comment here"] [-f ~/.ssh/your_private_key_file]
 
 > 可以看出 这个脚本底层使用 ssh 它的安全性和使用密码登录ssh一致
 
+## ssh config
+
+SSH 客户端和服务器可以添加一些配置文件 客户端的默认配置文件为`/etc/ssh/ssh_config`和`~/.ssh/config`
+
+> 完整的配置参考见[此](https://www.ssh.com/academy/ssh/config)
+
+常用的配置为配置服务器的别名 配置一个服务器的别名的写法如下
+```
+Host nickname # 你想使用的别名
+  User your_username # 真实的用户名
+  HostName ip_or_host # 服务器 IP 或者域名
+  IdentityFile ~/.ssh/private_key # 对应的私钥
+  IdentitiesOnly yes # 只使用密钥登录
+  Port 22 # 设置连接端口 默认为 22
+```
+
+配置一台需要中间跳板的服务器写法如下
+
+```
+Host rev_nick
+  User your_username # 真实的用户名
+  HostName ip_or_host # 服务器 IP 或者域名
+  IdentityFile ~/.ssh/private_key # 对应的私钥
+  IdentitiesOnly yes # 只使用密钥登录
+  Port 22 # 设置连接端口 默认为 22
+  ProxyJump nickname
+```
+
+`ProxyJump` 的值为一台服务器
+
+如此配置之后
+
+```bash
+$ ssh nickname # 登录 nickname 服务器
+$ ssh rev_nick # 登录 nickname 作为跳板的服务器
+```
+
 ## 补充内容
 
 ### authentication
