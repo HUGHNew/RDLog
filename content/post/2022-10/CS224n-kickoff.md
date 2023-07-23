@@ -3,7 +3,7 @@ layout: search
 headless: true
 title:  "CS224n 学习与辅助材料"
 categories: ["NLP", "materials", "WIP"]
-tags: ["course"]
+tags: ["record"]
 date: 2022-10-06T00:00:00+08:00
 ---
 

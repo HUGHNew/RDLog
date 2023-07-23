@@ -4,7 +4,7 @@ headless: true
 title:  "notice post"
 date: 2022-10-01T00:00:00+08:00
 categories: ["misc"]
-tags: ["notice"]
+tags: ["record"]
 ---
 new feeds by [Jekyll][jekyll-gh]
 

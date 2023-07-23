@@ -2,8 +2,8 @@
 layout: search
 headless: true
 title:  "NLP kickoff: OI dataset"
-categories: ["plan", "target"]
-tags: ["schedule"]
+categories: ["NLP", "introduction"]
+tags: ["record"]
 date: 2022-10-02T00:00:00+08:00
 ---
 基于[工伤数据集][OIDS]，训练一个文本分类器，完成倒数第三个任务（工商等级Level）的分类，并对预测器的性能进行衡量。
