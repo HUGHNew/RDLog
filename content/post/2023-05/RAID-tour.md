@@ -44,7 +44,7 @@ RAID方案一般分为
 
 Just a Bunch Of Disks 将多个硬盘在操作系统中合并为一个逻辑硬盘 直接增加容量
 
-![JBOD](../../../static/images/raid/JBOD.png)
+![JBOD](images/raid/JBOD.png)
 
 ### RAID0
 
@@ -54,7 +54,7 @@ Just a Bunch Of Disks 将多个硬盘在操作系统中合并为一个逻辑硬�
 
 读写最快 但没有冗余和容错
 
-![RAID0](../../../static/images/raid/RAID_0.png)
+![RAID0](images/raid/RAID_0.png)
 
 ### RAID1
 
@@ -64,7 +64,7 @@ Just a Bunch Of Disks 将多个硬盘在操作系统中合并为一个逻辑硬�
 
 $size=\text{min}(S_1,S_2,...,S_n)$
 
-![RAID1](../../../static/images/raid/RAID_1.png)
+![RAID1](images/raid/RAID_1.png)
 
 ### RAID5
 
@@ -74,7 +74,7 @@ RAID5使用具有分布式奇偶校验的块级条带化 将校验信息均分�
 
 $size=(n-1)*\text{min}(S_1,S_2,...,S_n)$
 
-![RAID5](../../../static/images/raid/RAID_5.png)
+![RAID5](images/raid/RAID_5.png)
 
 ### RAID6
 
@@ -82,7 +82,7 @@ RAID6使用两种独立的奇偶校验算法 需要更大磁盘空间和校验�
 
 $size=(n-2)*\text{min}(S_1,S_2,...,S_n)$
 
-![RAID6](../../../static/images/raid/RAID_6.png)
+![RAID6](images/raid/RAID_6.png)
 
 
 ### RAID10
@@ -91,19 +91,19 @@ $size=(n-2)*\text{min}(S_1,S_2,...,S_n)$
 
 如RAID10=RAID0(RAID1) 即先镜像再扩容
 
-![RAID101](../../../static/images/raid/RAID_10.png)![RAID101](../../../static/images/raid/RAID_01.png)
+![RAID101](images/raid/RAID_10.png)![RAID101](images/raid/RAID_01.png)
 
 RAID10的可靠性优于RAID01(一般没人用) RAID10一块磁盘损坏不影响其他磁盘
 
 ### RAID50
 
-![RAID50](../../../static/images/raid/RAID_50.png)
+![RAID50](images/raid/RAID_50.png)
 
 ### RAID60
 
 使用门槛比较高
 
-![RAID60](../../../static/images/raid/RAID_60.jpg)
+![RAID60](images/raid/RAID_60.jpg)
 
 ## 基于软件的RAID
 
