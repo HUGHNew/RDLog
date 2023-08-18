@@ -36,10 +36,12 @@ KVM上面安装Win7主要有三个步骤
 
 Win7x64镜像可以通过 [Next, I tell you](https://next.itellyou.cn/) 进行下载 通过BT方式应该会快一点
 
+> Win8.1 的官方镜像需要激活 需要重新打包
+
 ## 必备软件
 
 - 微信 ~~没办法 你只能选择最新版本~~
-- 搜狗输入法 ~~或者别的你喜欢的输入法~~
+- 搜狗输入法 ~~或者别的你喜欢的输入法~~ (Win10自带输入法)
 - Yandex浏览器 ~~还有更小的吗？~~
 - Office2016 ~~或者其他版本~~
 
@@ -56,4 +58,16 @@ Win7选择 [WinSCP](https://winscp.net/eng/download.php) 或者 [LocalSend](http
 
 ### 共享剪切板
 
-懒得折腾了 可以参考: <https://unix.stackexchange.com/questions/109117/virt-manager-copy-paste-functionality-to-the-vm>
+可以参考: <https://dausruddin.com/how-to-enable-clipboard-and-folder-sharing-in-qemu-kvm-on-windows-guest/#Solution_Clipboard_sharing>
+
+设置之后可以共享剪切板(文本和截图)
+
+### GPU passthrough
+
+默认没有显卡(系统内看不到核显)
+
+如果需要玩游戏 需要使用显卡透传
+
+建议参考文章:
+- 命令行操作: <https://github.com/lateralblast/kvm-nvidia-passthrough>
+- 图形化操作: <https://juejin.cn/post/7091905870312767495>
