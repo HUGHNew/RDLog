@@ -22,3 +22,5 @@ sudo apt install fcitx-libpinyin
 安装之后 即可在输入法设置界面选择中文了
 
 ![lib-pinyin](images/IME/ibus.png)
+
+不过会有一点词典的问题 添加词典见 这个仓库: <https://github.com/HUGHNew/libpinyin-dict>
