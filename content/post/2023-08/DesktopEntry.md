@@ -1,5 +1,6 @@
 ---
 title: "DesktopEntry"
+description: (为你下载的二进制或者脚本)手动添加 Linux 桌面图标
 date: 2023-08-18T14:26:21+08:00
 categories: ["Linux", "GNOME", "introduction", "desktop"]
 layout: search

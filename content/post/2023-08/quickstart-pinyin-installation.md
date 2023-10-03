@@ -1,5 +1,6 @@
 ---
 title: "Quickstart Pinyin Installation"
+description: 别整那么多配置 我只想立刻就能打拼音
 date: 2023-08-18T16:00:53+08:00
 categories: ["Linux", "GNOME", "introduction", "IME", "tool"]
 layout: search

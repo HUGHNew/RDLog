@@ -1,5 +1,6 @@
 ---
 title: "KVM Win7 Guest"
+description: KVM的Win7实操(不要折磨自己 还是用Win8.1+吧)
 date: 2023-06-23T00:51:17+08:00
 categories: ["Linux", "Windows", "introduction", "KVM"]
 layout: search

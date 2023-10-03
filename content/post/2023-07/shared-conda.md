@@ -1,5 +1,6 @@
 ---
 title: "Shared Conda"
+description: 设置共享conda环境(不推荐)
 date: 2023-07-30T20:41:42+08:00
 categories: ["Linux", "operation", "introduction"]
 layout: search

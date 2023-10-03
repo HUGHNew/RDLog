@@ -1,5 +1,6 @@
 ---
 title: "LLaMA Tokenizer Expansion"
+description: LLaMA 词表扩充小记
 date: 2023-05-29T16:33:47+08:00
 categories: ["NLP", "LLaMA", "tokenizer", "sentencepiece"]
 layout: search

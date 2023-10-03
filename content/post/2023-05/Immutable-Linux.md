@@ -1,5 +1,6 @@
 ---
 title: "Immutable Linux"
+description: 浅看不可变 Linux 系统(!Android)
 date: 2023-05-27T21:43:27+08:00
 categories: ["Linux", "introduction", "concept"]
 layout: search

@@ -1,5 +1,6 @@
 ---
 title: "RAID Tour"
+description: 回顾一下硬软件 RAID
 date: 2023-05-23T16:30:05+08:00
 categories: ["Linux", "operation", "introduction", "setup"]
 layout: search

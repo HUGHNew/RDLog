@@ -1,5 +1,6 @@
 ---
 title: "Sudoer Tutorial"
+description: 简简单单的超管入门
 date: 2023-09-12T19:58:22+08:00
 categories: ["Linux", "operation", "introduction"]
 layout: search

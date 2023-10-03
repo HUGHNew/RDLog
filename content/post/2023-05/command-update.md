@@ -1,5 +1,6 @@
 ---
 title: "Command Update"
+description: 升级你的服务器/桌面工具 让一部分工具先现代化起来 实现整体系统操作的现代化
 date: 2023-05-13T01:38:19+08:00
 categories: ["Linux", "operation", "introduction", "tools"]
 layout: search
@@ -24,11 +25,13 @@ tags: ["develop"]
 | find | [fd][fd] | apt/bin | 找不到文件的时候似乎比较少 |
 | sed/awk | [sd][sd] | bin | 现代人更友好的sed |
 | diff | [difftasic][difft] | bin | 语义化的diff 可以高亮语法和过滤一些缩进和空白 |
+| miniconda | [micromamba][mb] | bin/script | 完全兼容conda 但是***更快*** |
 
-上面可以直接用二进制的工具 除了 htop 都是Rust写的 所以可以直接 `cargo install`
+上面可以直接用二进制的工具 除了 htop 和 micromamba 都是Rust写的 所以可以直接 `cargo install`
 
 - apt 表示通过包管理进行下载或者只提供deb之类的系统包
 - bin 表示GitHub release有预编译的二进制
+- script 表示提供了安装脚本
 
 ## 补充表
 
@@ -57,3 +60,4 @@ tags: ["develop"]
 [fd]: https://github.com/sharkdp/fd
 [sd]: https://github.com/chmln/sd
 [difft]: https://github.com/Wilfred/difftastic
+[mb]: https://github.com/mamba-org/mamba
