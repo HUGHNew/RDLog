@@ -47,3 +47,11 @@ tags: ["record"]
 现在 Google 官方库归档了 不过还有社区库 见这里: [JeffLIrion/adb_shell](https://github.com/JeffLIrion/adb_shell)
 
 可用的Python代码见[此仓库](https://github.com/HUGHNew/adbili) 仓库还在更新中 后续会打包
+
+## 注意事项
+
+音频文件大小与视频清晰度正相关
+
+某个视频的音频文件在不同清晰度下的文件大小
+- 360P -> 617K
+- 720P -> 2.23M
