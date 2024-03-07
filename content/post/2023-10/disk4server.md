@@ -9,6 +9,8 @@ tags: ["develop"]
 
 # Disk Partition
 
+> **EFI 需要在磁盘分区**(例如/dev/sda1) 在LVM中设置的话 可能需要将该LVM盘设置为boot盘
+
 为了实现各个分区的拓展所有分区的都基于 **LVM** (不考虑 **Btrfs** 的情况下)
 
 基于逻辑分区/分卷的好处在于 加盘的时候方便很多
