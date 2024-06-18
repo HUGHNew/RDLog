@@ -46,6 +46,17 @@ Win7x64镜像可以通过 [Next, I tell you](https://next.itellyou.cn/) 进行�
 - Yandex浏览器 ~~还有更小的吗？~~
 - Office2016 ~~或者其他版本~~
 
+## OpenGL
+
+有些软件可能依赖于 OpenGL
+
+安装过程如下(Win7可用性未知 Win10可用)
+1. 下载[Mesa3D软件](https://github.com/pal1000/mesa-dist-win/releases)
+2. 解压后执行`systemwidedeploy.cmd`脚本 并选择 `Core desktop OpenGL drivers`
+3. 在[此处](https://www.geeks3d.com/dlz/) 找到并下载 GPU Caps Viewer用来验证
+4. 下载后启动即可看见 OpenGL 版本
+
+具体操作见回答 <https://askubuntu.com/a/1343984>
 
 ## 共享方案
 
