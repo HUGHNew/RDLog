@@ -3,7 +3,7 @@ title: "Python Package"
 date: 2024-04-11T09:54:32+08:00
 description: A simple Python packaging tutorial with poetry and twine
 categories: ["python",  "introduction", "package"]
-layout: archives
+layout: search
 tags: ["develop"]
 ---
 

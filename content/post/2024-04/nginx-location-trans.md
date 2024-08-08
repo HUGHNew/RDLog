@@ -3,7 +3,7 @@ title: "Nginx Location Trans"
 date: 2024-04-22T12:49:52+08:00
 description: Simple Nginx location guide. A translation from official docs
 categories: ["nginx",  "introduction", "operation"]
-layout: archives
+layout: search
 tags: ["develop"]
 ---
 
