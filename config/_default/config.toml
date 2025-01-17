@@ -1,4 +1,4 @@
-baseURL = 'http://hugnew.github.io/RDLog/'
+baseURL = 'http://hugnew.github.io/'
 languageCode = "zh-CN"
 title = 'Research/Develop/Business blogs'
 paginate = 4
